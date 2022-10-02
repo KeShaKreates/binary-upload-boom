@@ -11,6 +11,7 @@ const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
 const postRoutes = require("./routes/posts");
 const commentRoutes = require("./routes/comments");
+const journalRoutes = require("./routes/journals");
 
 
 //Use .env file in config folder
@@ -59,6 +60,7 @@ app.use(flash());
 app.use("/", mainRoutes);
 app.use("/post", postRoutes);
 app.use("/comment", commentRoutes);
+app.use("/journal", journalRoutes);
 
 //Server Running
 app.listen(process.env.PORT, () => {

@@ -3,10 +3,16 @@
   <div class="row mt-5">
       <div class="col-6">
           <div>
+              // Need to be able to request edits on user, email and PW // 
+              //Add edit button to each //
               <p><strong>User Name</strong>: <%= user.userName %></p>
               <p><strong>Email</strong>: <%= user.email %></p>
+              // Need to hide PW //
+              <p><strong>Password</strong>: <%= user.password %></p>
               <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+              <p><strong>Logged in as</strong>: <%= user.email %></p>
           </div>
+
           <div class="mt-5">
             <h2>Add a post</h2>
             <form action="/post/createPost" enctype="multipart/form-data" method="POST">
@@ -40,7 +46,29 @@
           <a class="btn btn-primary" href="/feed">Return to Feed</a>
         </div>  
       </div>  
+      </div>  
     </div>
   </div>
 </div>
+
+
+          <div class="mt-5">
+            <h2>Type your thoughts into your own personal journal.</h2>
+            <form action="/journal/createJournal" enctype="multipart/form-data" method="POST">
+              <div class="mb-3">
+                  <label for="title" class="form-label">Journal Entry Title</label>
+                  <input type="text" class="form-control" id="title" name="title">
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label">Journal Entry</label>
+                <textarea class="form-control" id="description" name="description"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" >Submit</button>
+            </form>
+          </div>
+          <h2>Here Are Your Journal Entries:</h2>
+          </div>  
+          </div>  
+      </div> 
 <%- include('partials/footer') -%>
+
