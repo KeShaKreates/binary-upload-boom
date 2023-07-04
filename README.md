@@ -14,6 +14,10 @@
   - API_SECRET = `your cloudinary api secret`
 
 ---
+# Build CSS Run
+
+`npm run build-css`
+
 
 # Run
 

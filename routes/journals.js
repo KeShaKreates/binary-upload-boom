@@ -4,7 +4,7 @@ const journalsController = require("../controllers/journals");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 //Journal Routes - simplified for now
-router.get("/:id", ensureAuth, journalsController.getJournal);
+router.get("/profile", ensureAuth, journalsController.getJournal);
 
 router.post("/createJournal", journalsController.createJournal);
 
