@@ -1,26 +1,20 @@
 const mongoose = require("mongoose");
 
-const PostSchema = new mongoose.Schema({
+const JournalPostSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
-  },
-  image: {
-    type: String,
-    require: true,
-  },
-  cloudinaryId: {
-    type: String,
-    require: true,
   },
   caption: {
     type: String,
     required: true,
   },
-  likes: {
-    type: Number,
+  favorite: [
+  {
+    type: String,
     required: true,
-  },
+  }
+],  
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
@@ -31,4 +25,4 @@ const PostSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Post", PostSchema);
+module.exports = mongoose.model("JournalPost", JournalPostSchema);

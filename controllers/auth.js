@@ -4,7 +4,7 @@ const User = require("../models/User");
 
 exports.getLogin = (req, res) => {
   if (req.user) {
-    return res.redirect("/profile");
+    return res.redirect("/home");
   }
   res.render("login", {
     title: "Login",
@@ -16,7 +16,7 @@ exports.postLogin = (req, res, next) => {
   if (!validator.isEmail(req.body.email))
     validationErrors.push({ msg: "Please enter a valid email address." });
   if (validator.isEmpty(req.body.password))
-    validationErrors.push({ msg: "Password cannot be blank." });
+    validationErrors.push({ msg: "Please enter a valid password." });
 
   if (validationErrors.length) {
     req.flash("errors", validationErrors);
@@ -39,7 +39,7 @@ exports.postLogin = (req, res, next) => {
         return next(err);
       }
       req.flash("success", { msg: "Success! You are logged in." });
-      res.redirect(req.session.returnTo || "/profile");
+      res.redirect(req.session.returnTo || "/home");
     });
   })(req, res, next);
 };
@@ -76,6 +76,7 @@ exports.postSignup = (req, res, next) => {
   if (req.body.password !== req.body.confirmPassword)
     validationErrors.push({ msg: "Passwords do not match" });
 
+
   if (validationErrors.length) {
     req.flash("errors", validationErrors);
     return res.redirect("../signup");
@@ -87,6 +88,8 @@ exports.postSignup = (req, res, next) => {
   const user = new User({
     userName: req.body.userName,
     email: req.body.email,
+    belief: req.body.moodbeliefs,
+    disorders: req.body.disorders,
     password: req.body.password,
   });
 
@@ -110,9 +113,10 @@ exports.postSignup = (req, res, next) => {
           if (err) {
             return next(err);
           }
-          res.redirect("/profile");
+          res.redirect("/home");
         });
       });
-    }
+    },
   );
 };
+  

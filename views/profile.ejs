@@ -1,76 +1,64 @@
 <%- include('partials/header') -%>
-<div class="container">
-  <div class="row mt-5">
-      <div class="col-6">
-          <div>
-              // Need to be able to request edits on user, email and PW // 
-              //Add edit button to each //
-              <p><strong>User Name</strong>: <%= user.userName %></p>
-              <p><strong>Email</strong>: <%= user.email %></p>
-              // Need to hide PW //
-              <p><strong>Password</strong>: <%= user.password %></p>
-              <a href="/logout" class="col-3 btn btn-primary">Logout</a>
-              <p><strong>Logged in as</strong>: <%= user.email %></p>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+</head>
+
+<body class=" flex flex-col min-h-screen">
+
+  <main class="flex-1">
+
+<h1 class="text-center mt-20 my-10 mx-5 xs:text-2xl md:text-5xl  font-bold text-neutral">Welcome To Your Account Page</h1>
+
+    <div class="flex justify-center mx-auto text-center container">
+      <div class="row ">
+        <div class="col-6">
+
+          <div class="avatar placeholder">
+            <div class="bg-neutral-focus text-neutral-content rounded-full w-24  mb-7">
+              <span class="text-md"><%= user.belief %></span>
+            </div>
           </div>
 
-          <div class="mt-5">
-            <h2>Add a post</h2>
-            <form action="/post/createPost" enctype="multipart/form-data" method="POST">
-              <div class="mb-3">
-                  <label for="title" class="form-label">Title</label>
-                  <input type="text" class="form-control" id="title" name="title">
-              </div>
-              <div class="mb-3">
-                <label for="caption" class="form-label">Caption</label>
-                <textarea class="form-control" id="caption" name="caption"></textarea>
-              </div>
-              <div class="mb-3">
-                <label for="imgUpload" class="form-label">Image</label>
-                <input type="file" class="form-control" id="imageUpload" name="file">
-              </div>
-              <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
-            </form>
+          <div class="profile">
+            <div class="divider"></div>
+            <p class="mb-3 "><strong>Username</strong></p>
+            <h3><%= user.userName %></h3>
+    
+            <div class="divider"></div>
+            <p class="mb-3"><strong>Email</strong></p>
+            <h3><%= user.email %></h3>
+    
+            <div class="divider"></div>
+            <p class="mb-3"><strong>My Belief System</strong></p>
+            <h3><%= user.belief %></h3>
+    
+            <div class="divider"></div>
+            <p class="mb-3"><strong>My Struggle</strong></p>
+            <h3><%= user.disorders %></h3>
+    
+            <div class="divider"></div>
+            <a href="/logout" class="col-3 btn  btn-ghost xs:btn-sm md:btn-md ring-4 ring-primary ring-offset-4 ring-offset-base-100  " id="logoutButton">Logout</a>
           </div>
+          
+        </div>
       </div>
-      <div class="col-6">
-        <ul class="row list-unstyled">
-        <% for(var i=0; i<posts.length; i++) {%>
-          <li class="col-6 justify-content-between mt-5">
-            <a href="/post/<%= posts[i]._id%>">
-              <img class="img-fluid" src="<%= posts[i].image%>">
-            </a>
-          </li>
-        <% } %>
-        </ul>
-        <div class="row justify-content-center mt-5">
-          <a class="btn btn-primary" href="/feed">Return to Feed</a>
-        </div>  
-      </div>  
-      </div>  
     </div>
-  </div>
-</div>
+
+    <!-- Assuming you have a logout button -->
+<script>
+  document.getElementById('logoutButton').addEventListener('click', function () {
+    // Clear the local storage when the user logs out
+    localStorage.removeItem('hasModalBeenShown');
+    // Add any other logout logic here
+  });
+</script>
 
 
-          <div class="mt-5">
-            <h2>Type your thoughts into your own personal journal.</h2>
-            <form action="/journal/createJournal" enctype="multipart/form-data" method="POST">
-              <div class="mb-3">
-                  <label for="title" class="form-label">Journal Entry Title</label>
-                  <input type="text" class="form-control" id="title" name="title">
-              </div>
-              <div class="mb-3">
-                <label for="description" class="form-label">Journal Entry</label>
-                <textarea class="form-control" id="description" name="description"></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary" >Submit</button>
-            </form>
-          </div>
-          <h2>Here Are Your Journal Entries:</h2>
-          <p><strong>User Journal</strong>: <%= user.journal %></p>
-          <h2><%= user.journal %></h2>
-          </div>  
-          </div>  
-      </div> 
+    </main>
+    
+    </body>
+
+    <div class="mt-20">
 <%- include('partials/footer') -%>
-
+</div>
